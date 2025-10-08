@@ -4,6 +4,9 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+html {
+  overflow-y: scroll;
+}
 
 @theme inline {
   --color-background: var(--background);
