@@ -37,75 +37,41 @@ export default function Navbar() {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
       }`}
     >
-      <div className="relative bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-between border border-[#4FB893] shadow-[0_0_20px_#4FB89330] overflow-hidden group">
-        {/* Logo */}
-        <div className="relative z-10 text-white font-extrabold text-lg tracking-wide">
-          <Link href="/">NYU</Link>
-        </div>
+      <div className="relative group">
+        {/* Glowing border */}
+        <div className="absolute inset-0 rounded-full border border-[#4FB893] opacity-60 blur-md animate-glow pointer-events-none"></div>
+        {/* Gradient bergerak */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#4FB89310] via-[#4FB89330] to-[#4FB89310] opacity-60 blur-lg animate-gradient-move pointer-events-none"></div>
 
-        {/* Desktop Menu */}
-        <ul className="relative z-10 hidden md:flex space-x-6">
-          {menuItems[lang].map((item, index) => (
-            <li key={index}>
-              <Link
-                href={item.href}
-                className={`text-white transition hover:drop-shadow-[0_0_8px_white] ${
-                  pathname === item.href
-                    ? "text-[#4FB893] drop-shadow-[0_0_6px_#4FB893]"
-                    : ""
-                }`}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        {/* Toggle Bahasa (Desktop) */}
-        <div
-          onClick={() => setLang(lang === "en" ? "id" : "en")}
-          className="hidden md:flex ml-6 w-16 h-8 items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
-        >
-          <div
-            className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-transform duration-300 text-white shadow-[0_0_8px_#4FB893] ${
-              lang === "en"
-                ? "translate-x-8 bg-[#4FB893]"
-                : "translate-x-0 bg-[#4FB893]"
-            }`}
-          >
-            {lang.toUpperCase()}
+        {/* Konten Navbar */}
+        <div className="relative z-10 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-between border border-[#4FB893] shadow-[0_0_20px_#4FB89330] overflow-hidden">
+          {/* Logo */}
+          <div className="text-white font-extrabold text-lg tracking-wide">
+            <Link href="/">NYU</Link>
           </div>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="relative z-10 md:hidden text-white text-2xl"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <HiOutlineX /> : <HiOutlineMenu />}
-        </button>
-      </div>
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex space-x-6">
+            {menuItems[lang].map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={item.href}
+                  className={`text-white transition hover:drop-shadow-[0_0_8px_white] ${
+                    pathname === item.href
+                      ? "text-[#4FB893] drop-shadow-[0_0_6px_#4FB893]"
+                      : ""
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-      {/* Mobile Dropdown */}
-      {menuOpen && (
-        <div className="md:hidden mt-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 py-4 px-6 flex flex-col items-center space-y-4 shadow-lg animate-fadeIn relative z-10">
-          {menuItems[lang].map((item, index) => (
-            <Link
-              key={index}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className={`text-white text-sm transition hover:text-[#4FB893] ${
-                pathname === item.href ? "text-[#4FB893]" : ""
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-
-          {/* Toggle bahasa (Mobile) */}
+          {/* Toggle Bahasa (Desktop) */}
           <div
             onClick={() => setLang(lang === "en" ? "id" : "en")}
-            className="w-16 h-8 flex items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
+            className="hidden md:flex ml-6 w-16 h-8 items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
           >
             <div
               className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-transform duration-300 text-white shadow-[0_0_8px_#4FB893] ${
@@ -117,8 +83,50 @@ export default function Navbar() {
               {lang.toUpperCase()}
             </div>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-white text-2xl"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <HiOutlineX /> : <HiOutlineMenu />}
+          </button>
         </div>
-      )}
+
+        {/* Mobile Dropdown */}
+        {menuOpen && (
+          <div className="md:hidden mt-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 py-4 px-6 flex flex-col items-center space-y-4 shadow-lg animate-fadeIn relative z-10">
+            {menuItems[lang].map((item, index) => (
+              <Link
+                key={index}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className={`text-white text-sm transition hover:text-[#4FB893] ${
+                  pathname === item.href ? "text-[#4FB893]" : ""
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+
+            {/* Toggle bahasa (Mobile) */}
+            <div
+              onClick={() => setLang(lang === "en" ? "id" : "en")}
+              className="w-16 h-8 flex items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
+            >
+              <div
+                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-transform duration-300 text-white shadow-[0_0_8px_#4FB893] ${
+                  lang === "en"
+                    ? "translate-x-8 bg-[#4FB893]"
+                    : "translate-x-0 bg-[#4FB893]"
+                }`}
+              >
+                {lang.toUpperCase()}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </nav>
   );
 }
