@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { LanguageProvider } from "../context/LanguageContext";
 
 
 export const metadata: Metadata = {
@@ -15,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+       <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

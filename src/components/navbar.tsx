@@ -1,14 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
-  const [lang, setLang] = useState<"en" | "id">("en");
+  const { lang, setLang } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 100);
+  }, []);
 
   const menuItems = {
     en: [
@@ -26,15 +32,19 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl">
-      <div className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-between border border-white/20 shadow-lg">
+    <nav
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
+      }`}
+    >
+      <div className="relative bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-between border border-[#4FB893] shadow-[0_0_20px_#4FB89330] overflow-hidden group">
         {/* Logo */}
-        <div className="text-white font-extrabold text-lg tracking-wide">
-          <Link href="/">MyProfile</Link>
+        <div className="relative z-10 text-white font-extrabold text-lg tracking-wide">
+          <Link href="/">NYU</Link>
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6">
+        <ul className="relative z-10 hidden md:flex space-x-6">
           {menuItems[lang].map((item, index) => (
             <li key={index}>
               <Link
@@ -51,16 +61,16 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Toggle Bahasa */}
+        {/* Toggle Bahasa (Desktop) */}
         <div
           onClick={() => setLang(lang === "en" ? "id" : "en")}
-          className="hidden md:flex ml-6 w-16 h-8 items-center bg-[#DDDDDD] rounded-full cursor-pointer p-1 transition"
+          className="hidden md:flex ml-6 w-16 h-8 items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
         >
           <div
-            className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-transform duration-300 ${
+            className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-transform duration-300 text-white shadow-[0_0_8px_#4FB893] ${
               lang === "en"
-                ? "translate-x-8 bg-black text-white drop-shadow-[0_0_6px_black]"
-                : "translate-x-0 bg-white text-black drop-shadow-[0_0_6px_white]"
+                ? "translate-x-8 bg-[#4FB893]"
+                : "translate-x-0 bg-[#4FB893]"
             }`}
           >
             {lang.toUpperCase()}
@@ -69,7 +79,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white text-2xl"
+          className="relative z-10 md:hidden text-white text-2xl"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <HiOutlineX /> : <HiOutlineMenu />}
@@ -78,7 +88,7 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <div className="md:hidden mt-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 py-4 px-6 flex flex-col items-center space-y-4 shadow-lg animate-fadeIn">
+        <div className="md:hidden mt-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 py-4 px-6 flex flex-col items-center space-y-4 shadow-lg animate-fadeIn relative z-10">
           {menuItems[lang].map((item, index) => (
             <Link
               key={index}
@@ -92,16 +102,16 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* Toggle bahasa di mobile */}
+          {/* Toggle bahasa (Mobile) */}
           <div
             onClick={() => setLang(lang === "en" ? "id" : "en")}
-            className="w-16 h-8 flex items-center bg-[#DDDDDD] rounded-full cursor-pointer p-1 transition"
+            className="w-16 h-8 flex items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
           >
             <div
-              className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-transform duration-300 ${
+              className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-transform duration-300 text-white shadow-[0_0_8px_#4FB893] ${
                 lang === "en"
-                  ? "translate-x-8 bg-black text-white drop-shadow-[0_0_6px_black]"
-                  : "translate-x-0 bg-white text-black drop-shadow-[0_0_6px_white]"
+                  ? "translate-x-8 bg-[#4FB893]"
+                  : "translate-x-0 bg-[#4FB893]"
               }`}
             >
               {lang.toUpperCase()}

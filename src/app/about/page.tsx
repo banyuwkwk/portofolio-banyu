@@ -1,72 +1,85 @@
-// app/about/page.tsx (Next.js 13+)
-import Image from "next/image";
+"use client";
+
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function AboutPage() {
+  const { lang } = useLanguage();
+
+  const text = {
+    en: {
+      title: "About Me",
+      subtitle: "Designer • Developer",
+      description:
+        "Hi, I’m Banyu — a passionate designer and developer who loves creating modern, minimal, and meaningful designs. I focus on building clean, functional, and aesthetic digital experiences that truly connect with people.",
+      skills: [
+        "HTML & CSS",
+        "Laravel",
+        "Next.js",
+        "PHP",
+        "UI/UX Design",
+        "Tailwind CSS",
+      ],
+    },
+    id: {
+      title: "Tentang Saya",
+      subtitle: "Desainer • Developer",
+      description:
+        "Halo, saya Banyu — seorang desainer dan developer yang suka membuat desain modern, minimal, dan bermakna. Saya fokus membuat pengalaman digital yang bersih, fungsional, dan estetik yang benar-benar terhubung dengan orang.",
+      skills: [
+        "HTML & CSS",
+        "Laravel",
+        "Next.js",
+        "PHP",
+        "Desain UI/UX",
+        "Tailwind CSS",
+      ],
+    },
+  };
+
   return (
     <div>
       <Navbar />
 
-    <section className="min-h-screen flex flex-col justify-center items-center bg-[#0F0F0F] text-white px-6 py-20">
-      <div className="max-w-4xl w-full text-center">
-        {/* Foto Profil */}
-        <div className="flex justify-center mb-8">
-          <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-[#4FB893] shadow-lg mt-5">
-            <Image
-              src="/profile.jpg" // ganti dengan path fotomu
-              alt="Banyu"
-              fill
-              className="object-cover"
-            />
+      <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-[#0F0F0F] via-[#1A1A1A] to-[#2B2B2B] text-white px-6 py-20 relative overflow-hidden">
+        {/* Efek background glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(79,184,147,0.1)_0%,_transparent_70%)]"></div>
+
+        <div className="max-w-4xl w-full text-center relative z-10">
+          {/* Judul */}
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-white drop-shadow-md animate-fade-in">
+            {text[lang].title.split(" ")[0]}{" "}
+            <span className="text-[#4FB893]">{text[lang].title.split(" ")[1]}</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-[#4FB893] text-lg md:text-xl mb-10 tracking-wide">
+            {text[lang].subtitle}
+          </p>
+
+          {/* Deskripsi */}
+          <p className="text-lg md:text-xl leading-relaxed text-gray-300 mb-16 animate-slide-up">
+            {text[lang].description}
+          </p>
+
+          {/* Skill Section - 6 per baris */}
+          <div className="mt-12 animate-fade-up">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5">
+              {text[lang].skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="bg-[#1A1A1A] px-4 py-3 rounded-lg flex items-center justify-center text-center border border-transparent hover:border-[#4FB893] hover:shadow-[0_0_15px_#4FB89340] transition-all duration-300 font-medium text-gray-300 hover:text-white text-sm md:text-base"
+                >
+                  {skill}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Judul */}
-        <h1 className="text-4xl font-bold mb-3">About Me</h1>
-        <p className="text-[#4FB893] mb-8">Designer • Developer • Creator</p>
-
-        {/* Deskripsi */}
-        <p className="text-lg leading-relaxed text-gray-300 mb-10">
-          Hi, I’m <span className="text-white font-semibold">Banyu</span> — a passionate designer and developer 
-          with a love for clean, modern, and meaningful design. I enjoy transforming creative ideas 
-          into digital experiences that connect with people.
-        </p>
-
-{/* Skill Section */}
-<div className="mt-12">
-  {/* <h2 className="text-2xl font-semibold mb-6 text-white">My Skills</h2> */}
-
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
-    {[
-      { name: "HTML & CSS", icon: "/about/htmlcss.png" },
-      { name: "Laravel", icon: "/icons/js.svg" },
-      { name: "Next.js", icon: "/icons/react.svg" },
-      { name: "PHP", icon: "/icons/laravel.svg" },
-      { name: "UI/UX Design", icon: "/icons/design.svg" },
-      { name: "Tailwind CSS", icon: "/icons/tailwind.svg" },
-    ].map((skill, index) => (
-      <div
-        key={index}
-        className="group relative bg-[#1A1A1A] rounded-xl p-5 flex flex-col items-center justify-center gap-3 border border-transparent hover:border-[#4FB893] hover:shadow-[0_0_15px_#4FB89340] transition-all duration-300"
-      >
-        <Image
-          src={skill.icon}
-          alt={skill.name}
-          width={40}
-          height={40}
-          className="opacity-80 group-hover:opacity-100 transition"
-        />
-        <p className="text-gray-300 group-hover:text-white font-medium text-sm">
-          {skill.name}
-        </p>
-      </div>
-    ))}
-  </div>
-</div>
-        </div>
-    </section>
-    <Footer />
+      <Footer />
     </div>
   );
 }
