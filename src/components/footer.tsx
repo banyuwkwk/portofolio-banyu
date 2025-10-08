@@ -41,7 +41,7 @@ export default function Footer() {
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-8 mb-8 text-gray-300 text-sm">
-          <a href="/home" className="hover:text-white transition">{text[lang].home}</a>
+          <a href="/" className="hover:text-white transition">{text[lang].home}</a>
           <a href="/about" className="hover:text-white transition">{text[lang].about}</a>
           <a href="/experience" className="hover:text-white transition">{text[lang].experience}</a>
           <a href="/contact" className="hover:text-white transition">{text[lang].contact}</a>
