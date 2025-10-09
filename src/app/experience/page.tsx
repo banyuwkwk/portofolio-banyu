@@ -200,18 +200,20 @@ export default function ExperiencePage() {
               </div>
 
               {/* Tombol navigasi slider */}
-              <button
-                onClick={() => prevSlide(i, project.images.length)}
-                className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/40 hover:bg-black/70 rounded-full p-2 text-white transition-all shadow-[0_0_8px_#4FB893]"
-              >
-                ❮
-              </button>
-              <button
-                onClick={() => nextSlide(i, project.images.length)}
-                className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/40 hover:bg-black/70 rounded-full p-2 text-white transition-all shadow-[0_0_8px_#4FB893]"
-              >
-                ❯
-              </button>
+{/* Tombol navigasi slider */}
+<button
+  onClick={() => prevSlide(i, project.images.length)}
+  className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/40 hover:bg-black/70 rounded-full w-10 h-10 flex items-center justify-center text-white transition-all shadow-[0_0_8px_#4FB893]"
+>
+  ❮
+</button>
+<button
+  onClick={() => nextSlide(i, project.images.length)}
+  className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/40 hover:bg-black/70 rounded-full w-10 h-10 flex items-center justify-center text-white transition-all shadow-[0_0_8px_#4FB893]"
+>
+  ❯
+</button>
+
             </motion.div>
           </motion.div>
         ))}
