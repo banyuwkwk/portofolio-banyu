@@ -199,7 +199,6 @@ export default function ExperiencePage() {
                 ))}
               </div>
 
-              {/* Tombol navigasi slider */}
 {/* Tombol navigasi slider */}
 <button
   onClick={() => prevSlide(i, project.images.length)}
