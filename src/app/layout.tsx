@@ -5,7 +5,7 @@ import { LanguageProvider } from "../context/LanguageContext";
 
 
 export const metadata: Metadata = {
-  title: "My Profile Website",
+  title: "Portofolio Banyu",
   description: "Personal profile website built with Next.js",
 };
 
