@@ -40,6 +40,7 @@ export default function Navbar() {
       <div className="relative group">
         {/* Glowing border */}
         <div className="absolute inset-0 rounded-full border border-[#4FB893] opacity-60 blur-md animate-glow pointer-events-none"></div>
+
         {/* Gradient bergerak */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#4FB89310] via-[#4FB89330] to-[#4FB89310] opacity-60 blur-lg animate-gradient-move pointer-events-none"></div>
 
@@ -68,29 +69,53 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Toggle Bahasa (Desktop) */}
-          <div
-            onClick={() => setLang(lang === "en" ? "id" : "en")}
-            className="hidden md:flex ml-6 w-16 h-8 items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
-          >
+          {/* Kanan: Toggle Bahasa + Download CV */}
+          <div className="hidden md:flex items-center gap-4 ml-6">
+            {/* Toggle Bahasa */}
             <div
-              className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-transform duration-300 text-white shadow-[0_0_8px_#4FB893] ${
-                lang === "en"
-                  ? "translate-x-8 bg-[#4FB893]"
-                  : "translate-x-0 bg-[#4FB893]"
-              }`}
+              onClick={() => setLang(lang === "en" ? "id" : "en")}
+              className="w-16 h-8 flex items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
             >
-              {lang.toUpperCase()}
+              <div
+                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-transform duration-300 text-white shadow-[0_0_8px_#4FB893] ${
+                  lang === "en"
+                    ? "translate-x-8 bg-[#4FB893]"
+                    : "translate-x-0 bg-[#4FB893]"
+                }`}
+              >
+                {lang.toUpperCase()}
+              </div>
             </div>
+
+            {/* Tombol Download CV (Desktop) */}
+            <a
+              href="/CV/CV%20BANYU%20FRONTDEV.pdf"
+              download
+              className="text-white text-sm font-semibold px-4 py-2 border border-[#4FB893] rounded-full hover:bg-[#4FB893] hover:text-black transition duration-300 shadow-[0_0_10px_#4FB89360]"
+            >
+              {lang === "en" ? "Download CV" : "Unduh CV"}
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white text-2xl"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <HiOutlineX /> : <HiOutlineMenu />}
-          </button>
+          {/* Bagian Kanan Mobile */}
+          <div className="md:hidden flex items-center gap-3">
+            {/* Download CV di kiri menu burger */}
+            <a
+              href="/CV/CV%20BANYU%20FRONTDEV.pdf"
+              download
+              className="text-white text-xs font-semibold px-3 py-1 border border-[#4FB893] rounded-full hover:bg-[#4FB893] hover:text-black transition duration-300 shadow-[0_0_8px_#4FB89360]"
+            >
+              {lang === "en" ? "CV" : "CV"}
+            </a>
+
+            {/* Tombol Menu Burger */}
+            <button
+              className="text-white text-2xl"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              {menuOpen ? <HiOutlineX /> : <HiOutlineMenu />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Dropdown */}
@@ -109,7 +134,7 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* Toggle bahasa (Mobile) */}
+            {/* Toggle Bahasa (Mobile) */}
             <div
               onClick={() => setLang(lang === "en" ? "id" : "en")}
               className="w-16 h-8 flex items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
