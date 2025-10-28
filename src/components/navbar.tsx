@@ -38,20 +38,15 @@ export default function Navbar() {
       }`}
     >
       <div className="relative group">
-        {/* Glowing border */}
         <div className="absolute inset-0 rounded-full border border-[#4FB893] opacity-60 blur-md animate-glow pointer-events-none"></div>
 
-        {/* Gradient bergerak */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#4FB89310] via-[#4FB89330] to-[#4FB89310] opacity-60 blur-lg animate-gradient-move pointer-events-none"></div>
 
-        {/* Konten Navbar */}
         <div className="relative z-10 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-between border border-[#4FB893] shadow-[0_0_20px_#4FB89330] overflow-hidden">
-          {/* Logo */}
           <div className="text-white font-extrabold text-lg tracking-wide">
             <Link href="/">NYU</Link>
           </div>
 
-          {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-6">
             {menuItems[lang].map((item, index) => (
               <li key={index}>
@@ -69,9 +64,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Kanan: Toggle Bahasa + Download CV */}
           <div className="hidden md:flex items-center gap-4 ml-6">
-            {/* Toggle Bahasa */}
             <div
               onClick={() => setLang(lang === "en" ? "id" : "en")}
               className="w-16 h-8 flex items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
@@ -87,7 +80,6 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Tombol Download CV (Desktop) */}
             <a
               href="/CV/CV%20BANYU%20FRONTDEV.pdf"
               download
@@ -97,9 +89,7 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Bagian Kanan Mobile */}
           <div className="md:hidden flex items-center gap-3">
-            {/* Download CV di kiri menu burger */}
             <a
               href="/CV/CV%20BANYU%20FRONTDEV.pdf"
               download
@@ -108,7 +98,6 @@ export default function Navbar() {
               {lang === "en" ? "CV" : "CV"}
             </a>
 
-            {/* Tombol Menu Burger */}
             <button
               className="text-white text-2xl"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -118,7 +107,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Dropdown */}
         {menuOpen && (
           <div className="md:hidden mt-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 py-4 px-6 flex flex-col items-center space-y-4 shadow-lg animate-fadeIn relative z-10">
             {menuItems[lang].map((item, index) => (
@@ -134,7 +122,6 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* Toggle Bahasa (Mobile) */}
             <div
               onClick={() => setLang(lang === "en" ? "id" : "en")}
               className="w-16 h-8 flex items-center bg-[#4FB893]/20 border border-[#4FB89380] rounded-full cursor-pointer p-1 transition shadow-[0_0_12px_#4FB89380]"
