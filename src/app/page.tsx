@@ -7,7 +7,7 @@ import { SiGmail } from "react-icons/si";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Code, Monitor } from "lucide-react";
-import { useLanguage } from "@/context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext"; //important Double Leanguage 
 import { HiOutlineChevronDown } from "react-icons/hi";
 
 export default function Home() {
